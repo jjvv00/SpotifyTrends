@@ -142,8 +142,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description"><span class="header-section-number">2.1</span> Description</a></li>
-  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.2</span> Missing value analysis</a></li>
+  <li><a href="#technical-description" id="toc-technical-description" class="nav-link active" data-scroll-target="#technical-description"><span class="header-section-number">2.1</span> Technical description</a></li>
+  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description"><span class="header-section-number">2.2</span> Description</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jjvv00/SpotifyTrends.git/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jjvv00/SpotifyTrends.git/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -167,11 +168,23 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="description" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="description"><span class="header-section-number">2.1</span> Description</h2>
+<section id="technical-description" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical description</h2>
+<p>We will be accessing the Spotify Web API that provides us to a vast collection of music-related data. This could include information about tracks, albums, artists, and user-specific information. This data is collected and maintained by Spotify, a leading music streaming platform. Thus, we are assuming that Spotify is able to update the API frequently. There are not any obvious issues or problems with the data. We plan to retrieve data through the “spotifyr” R wrapper for pulling track audio features and other information from Spotify’s Web API in bulk <a href="https://www.rcharlie.com/spotifyr/">RStudio</a>. The authors are Josia Parry, Donal Phipps, Tom Wolf, and Charlie Thompson, who also maintains the package. According to Thomposon’s Github, the last changes are from December 14, 2022.</p>
+<p>Even Oppenheimer completed a project called “Using Data to Find the Angriest Death Grips Song.“ We plan to follow this procedure in tandem with the valence and energy variables from the “spotifyr” R wrapper to analyze the moods of the songs. Our current concern is that Oppenheimer uses an r package, ‘genius,’ written by Josiah Parry with ’tidytext” by Julia Slige to count the number of angry words that are in songs. “genuis” package allows easy access to lyrics as text data, however, Parry announced on October 31, 2021, that he will not be maintaining the package due to the gray legal area (https://medium.com/<span class="citation" data-cites="evanopp/angriest-death-grips-data-anger-502168c1c2f0">@evanopp/angriest-death-grips-data-anger-502168c1c2f0</span>). On the other hand, “tidytext” was recently updated on September 5, 2023.</p>
 </section>
-<section id="missing-value-analysis" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.2</span> Missing value analysis</h2>
+<section id="description" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="description"><span class="header-section-number">2.2</span> Description</h2>
+<p>Comparative Analysis of Top Tracks:</p>
+<p>The Spotify Web API provides access to user-specific data, including the top tracks for each user. By querying the API for both partners, we can retrieve information on their individual top tracks. The data includes details such as track name, artist, album, and popularity. Through the Spotify R package, we can seamlessly compare the top tracks, identifying commonalities and differences in musical preferences. Using the <code>get_my_top_tracks</code> function from the “spotifyr,” we can get the top tracks from each user. We can extract relevant details such as track name, artist, and album and save it to a data frame and visualize it.</p>
+<p>Exploring Album Moods:</p>
+<p>Leveraging the Spotify API’s audio features, particularly valence and energy, we can analyze the mood dynamics of artists’ albums. Valence represents the musical positiveness, while energy represents the intensity and activity. By aggregating these features at the album level, we gain insights into the overall emotional content of each album. The Spotify R package allows us to efficiently extract and process this information, enabling us to explore patterns and themes in the emotional landscape of diverse artists. By utilizing the <code>get_audio_features</code> function from the “spotifyr,” we can obtain the valence and energy features for each track. Then. we can aggregate these features at the album level to represent the overall mood. Lastly, we can analyze patterns and trends in mood dynamics across different artists’ albums.</p>
+<p>Lyrics and Emotional Expression:</p>
+<p>The Genius R package provides access to song lyrics, allowing us to perform sentiment analysis and explore emotional expression in the lyrics of selected songs. By querying the Genius API through the “genuis” R package, we can retrieve lyrics for specific tracks of interest. Combining this textual data with the emotional features obtained from the Spotify API, we can deepen our understanding of how lyrics contribute to the overall emotional depth and resonance of the music. We can query the Genius API through the “genuis” to retrieve lyrics for selected tracks. Then we can perform sentiment analysis on the lyrics to quantify emotional expression based on the number of “angry” words identified by NRC’s standards with the help of “tidytext”.</p>
+<p>By executing these data-driven analyses, we should be able to identify shared musical preferences and unique individual tastes based on top track analysis and visualize the emotional dynamics within albums, offering insights into how artists convey mood through their music. Our project aims to contribute meaningful insights into the intricate relationship between personal music preferences, emotional resonance, and the broader artistic expression found within the world of music.</p>
+</section>
+<section id="missing-value-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</h2>
 
 
 </section>
