@@ -22,6 +22,7 @@ By executing these data-driven analyses, we should be able to identify shared mu
 
 
 ## Missing value analysis
+The only missing values are in the "track_preview_url" column in the Taylor Swift dataframe. 
 
 The only missing values are in the "track_preview_url" column in the Taylor swift data frame. 
 
@@ -52,6 +53,7 @@ ggplot(na_dataTS, aes(x = column, y = NA_countTS, fill = NA_countTS)) +
   theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) +
   geom_text(aes(label = NA_countTS), vjust = -0.5, size = 3)
 ```
+As you can see, the NA values are in the "track_preview_url" column. However, we will not be using this feature anyway, so we will remove it from all of the dataframes. 
 
 ```{r}
 # For Fleetwood Mac
@@ -68,6 +70,7 @@ ggplot(na_dataFM, aes(x = column, y = NA_countFM, fill = NA_countFM)) +
   theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) + 
   geom_text(aes(label = NA_countFM), vjust = -0.5, size = 3)
 ```
+There are no NA values in this data frame.
 
 ```{r}
 # For Doja Cat
@@ -84,6 +87,7 @@ ggplot(na_dataDC, aes(x = column, y = NA_countDC, fill = NA_countDC)) +
   theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) + 
   geom_text(aes(label = NA_countDC), vjust = -0.5, size = 3)
 ```
+There are no NA values in this data frame.
 
 ```{r}
 # For Peso Pluma
@@ -101,4 +105,5 @@ ggplot(na_dataPP, aes(x = column, y = NA_countPP, fill = NA_countPP)) +
   theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) + 
   geom_text(aes(label = NA_countPP), vjust = -0.5, size = 3)
 ```
+There are no NA values in this data frame.
 
