@@ -22,3 +22,81 @@ By executing these data-driven analyses, we should be able to identify shared mu
 
 
 ## Missing value analysis
+
+```{r}
+library(spotifyr)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(tidyverse)
+
+Sys.setenv(SPOTIFY_CLIENT_ID = "d895b3472cb743c581bc155bd97d3c4e", SPOTIFY_CLIENT_SECRET = "348918affcf741d8841b9445b693c0d4")
+
+token <- get_spotify_access_token()
+```
+
+```{r}
+# For Taylor Swift 
+TS <- get_artist_audio_features('taylor swift')
+
+NA_countsTS <- colSums(is.na(TS))
+
+na_dataTS <- data.frame(column = names(NA_countsTS), NA_countTS = NA_countsTS)
+
+ggplot(na_dataTS, aes(x = column, y = NA_countTS, fill = NA_countTS)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Count of NAs in Each Column for Taylor Swift", x = "Column", y = "Number of NA Values") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) +
+  geom_text(aes(label = NA_countTS), vjust = -0.5, size = 3)
+```
+
+```{r}
+# For Fleetwood Mac
+FM <- get_artist_audio_features('fleetwood mac')
+
+NA_countsFM <- colSums(is.na(FM))
+
+na_dataFM <- data.frame(column = names(NA_countsFM), NA_countFM = NA_countsFM)
+
+ggplot(na_dataFM, aes(x = column, y = NA_countFM, fill = NA_countFM)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Count of NAs in Each Column for Fleetwood Mac", x = "Column", y = "Number of NA Values") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) + 
+  geom_text(aes(label = NA_countFM), vjust = -0.5, size = 3)
+```
+
+```{r}
+# For Doja Cat
+DC <- get_artist_audio_features('doja cat')
+
+NA_countsDC <- colSums(is.na(DC))
+
+na_dataDC <- data.frame(column = names(NA_countsDC), NA_countDC = NA_countsDC)
+
+ggplot(na_dataDC, aes(x = column, y = NA_countDC, fill = NA_countDC)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Count of NAs in Each Column for Doja Cat", x = "Column", y = "Number of NA Values") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) + 
+  geom_text(aes(label = NA_countDC), vjust = -0.5, size = 3)
+```
+
+```{r}
+# For Peso Pluma
+PP <- get_artist_audio_features('peso pluma')
+View(PP)
+
+NA_countsPP <- colSums(is.na(PP))
+
+na_dataPP <- data.frame(column = names(NA_countsPP), NA_countPP = NA_countsPP)
+
+ggplot(na_dataPP, aes(x = column, y = NA_countPP, fill = NA_countPP)) +
+  geom_bar(stat = "identity", color = "black") +
+  labs(title = "Count of NAs in Each Column for Peso Pluma", x = "Column", y = "Number of NA Values") +
+  theme_minimal() + 
+  theme(axis.text.x = element_text(size = 8, angle = 50, hjust = 1)) + 
+  geom_text(aes(label = NA_countPP), vjust = -0.5, size = 3)
+```
+
