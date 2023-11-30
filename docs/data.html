@@ -176,9 +176,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#technical-description" id="toc-technical-description" class="nav-link active" data-scroll-target="#technical-description"><span class="header-section-number">2.1</span> Technical description</a></li>
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description"><span class="header-section-number">2.2</span> Description</a></li>
-  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</a></li>
+  <li><a href="#technical-description" id="toc-technical-description" class="nav-link active" data-scroll-target="#technical-description"><span class="header-section-number">2.1</span> Technical Description</a></li>
+  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2</span> Research Plan</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing Value Analysis</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/jjvv00/SpotifyTrends.git/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/jjvv00/SpotifyTrends.git/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -203,22 +203,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="technical-description" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical description</h2>
+<h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical Description</h2>
 <p>We will be accessing the Spotify Web API that provides us to a vast collection of music-related data. This could include information about tracks, albums, artists, and user-specific information. This data is collected and maintained by Spotify, a leading music streaming platform. Thus, we are assuming that Spotify is able to update the API frequently. There are not any obvious issues or problems with the data. We plan to retrieve data through the “spotifyr” R wrapper for pulling track audio features and other information from Spotify’s Web API in bulk <a href="https://www.rcharlie.com/spotifyr/">(Thompson, Et al., 2022)</a>. The authors are Josia Parry, Donal Phipps, Tom Wolf, and Charlie Thompson, who also maintains the package. According to Thomposon’s Github, the last changes are from December 14, 2022.</p>
-<p>Even Oppenheimer completed a project called “Using Data to Find the Angriest Death Grips Song“ <a href="https://medium.com/@evanopp/angriest-death-grips-data-anger-502168c1c2f0">(Oppenheimer, 2022)</a>. We plan to follow this procedure in tandem with the valence and energy variables from the “spotifyr” R wrapper to analyze the moods of the songs. Our current concern is that Oppenheimer uses an r package, ‘genius,’ written by Josiah Parry with ’tidytext” by Julia Slige to count the number of angry words that are in songs. “genuis” package allows easy access to lyrics as text data, however, Parry announced on October 31, 2021, that he will not be maintaining the package due to the gray legal area <a href="https://github.com/JosiahParry/genius">(Parry, 2023)</a> . On the other hand, “tidytext” was recently updated on September 5, 2023.</p>
+<p>Our data is in the form of 4 dataframes, one for each of our top two artists. These data frames contain all of the songs for a specific artist (Taylor Swift, Fleetwood Mac, Doja Cat, and Peso Pluma). There are 39 features listed for each song. These range from basic descriptors such as song title, album, release date, to more complex features to describe the mood/tone of the songs. We will mainly utilize the danceability, energy, and valence scores for each song. The number of rows in each of these data frames is the total number of songs each artist has. Taylor Swift will have a data frame of 530 X 39. Fleetwood Mac has a data frame of size 760 X 39. Doja Cat has a data frame of size 91 X 39, and Peso Pluma has a data frame of size 57 X 39.</p>
 </section>
-<section id="description" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="description"><span class="header-section-number">2.2</span> Description</h2>
-<p>Comparative Analysis of Top Tracks:</p>
-<p>The Spotify Web API provides access to user-specific data, including the top tracks for each user. By querying the API for both partners, we can retrieve information on their individual top tracks. The data includes details such as track name, artist, album, and popularity. Through the Spotify R package, we can seamlessly compare the top tracks, identifying commonalities and differences in musical preferences. Using the <code>get_my_top_tracks</code> function from the “spotifyr,” we can get the top tracks from each user. We can extract relevant details such as track name, artist, and album and save it to a data frame and visualize it.</p>
+<section id="research-plan" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2</span> Research Plan</h2>
+<p>Comparative Analysis of Top Artists:</p>
+<p>We will analyze the top two artists for each of us provided by our Spotify Wrapped.</p>
 <p>Exploring Album Moods:</p>
-<p>Leveraging the Spotify API’s audio features, particularly valence and energy, we can analyze the mood dynamics of artists’ albums. Valence represents the musical positiveness, while energy represents the intensity and activity. By aggregating these features at the album level, we gain insights into the overall emotional content of each album. The Spotify R package allows us to efficiently extract and process this information, enabling us to explore patterns and themes in the emotional landscape of diverse artists. By utilizing the <code>get_audio_features</code> function from the “spotifyr,” we can obtain the valence and energy features for each track. Then. we can aggregate these features at the album level to represent the overall mood. Lastly, we can analyze patterns and trends in mood dynamics across different artists’ albums.</p>
-<p>Lyrics and Emotional Expression:</p>
-<p>The Genius R package provides access to song lyrics, allowing us to perform sentiment analysis and explore emotional expression in the lyrics of selected songs. By querying the Genius API through the “genuis” R package, we can retrieve lyrics for specific tracks of interest. Combining this textual data with the emotional features obtained from the Spotify API, we can deepen our understanding of how lyrics contribute to the overall emotional depth and resonance of the music. We can query the Genius API through the “genuis” to retrieve lyrics for selected tracks. Then we can perform sentiment analysis on the lyrics to quantify emotional expression based on the number of “angry” words identified by NRC’s standards with the help of “tidytext”.</p>
-<p>By executing these data-driven analyses, we should be able to identify shared musical preferences and unique individual tastes based on top track analysis and visualize the emotional dynamics within albums, offering insights into how artists convey mood through their music. Our project aims to contribute meaningful insights into the intricate relationship between personal music preferences, emotional resonance, and the broader artistic expression found within the world of music.</p>
+<p>Leveraging the Spotify API’s audio features, particularly valence and energy, we can analyze the mood dynamics of artists’ albums. Valence represents the musical positivity, while energy represents the intensity and activity. By aggregating these features at the album level, we gain insights into the overall emotional content of each album. The Spotify R package allows us to extract and process this information efficiently, enabling us to explore patterns and themes in the emotional landscape of diverse artists. By utilizing the <code>get_audio_features</code> function from the “spotifyr,” we can obtain the valence, danceability, and energy features for each track. Then. we can aggregate these features at the album level to represent the overall mood. Lastly, we can analyze patterns and trends in mood dynamics across different artists’ albums.</p>
 </section>
 <section id="missing-value-analysis" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</h2>
+<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing Value Analysis</h2>
+<p>The only missing values are in the “track_preview_url” column in the Taylor Swift dataframe.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -286,6 +284,7 @@ Attaching package: 'dplyr'</code></pre>
 <p><img src="data_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>As you can see, the NA values are in the “track_preview_url” column. However, we will not be using this feature anyway, so we will remove it from all of the dataframes.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -298,15 +297,17 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(na_dataFM, <span class="fu">aes</span>(<span class="at">x =</span> column, <span class="at">y =</span> NA_countFM, <span class="at">fill =</span> NA_countFM)) <span class="sc">+</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Count of NAs in Each Column for Fleetwood Mac"</span>, <span class="at">x =</span> <span class="st">"Column"</span>, <span class="at">y =</span> <span class="st">"Number of NA Values"</span>) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> NA_countFM), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(NA_countsFM) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Count of NAs in Each Column for Fleetwood Mac"</span>, <span class="at">x =</span> <span class="st">"Column"</span>, <span class="at">y =</span> <span class="st">"Number of NA Values"</span>) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> NA_countFM), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="data_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>There are no NA values in this data frame.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -319,28 +320,30 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(na_dataDC, <span class="fu">aes</span>(<span class="at">x =</span> column, <span class="at">y =</span> NA_countDC, <span class="at">fill =</span> NA_countDC)) <span class="sc">+</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Count of NAs in Each Column for Doja Cat"</span>, <span class="at">x =</span> <span class="st">"Column"</span>, <span class="at">y =</span> <span class="st">"Number of NA Values"</span>) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> NA_countDC), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(NA_countsDC) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Count of NAs in Each Column for Doja Cat"</span>, <span class="at">x =</span> <span class="st">"Column"</span>, <span class="at">y =</span> <span class="st">"Number of NA Values"</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> NA_countDC), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>There are no NA values in this data frame.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For Peso Pluma</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>PP <span class="ot">&lt;-</span> <span class="fu">get_artist_audio_features</span>(<span class="st">'peso pluma'</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(PP)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>NA_countsPP <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(PP))</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>na_dataPP <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">column =</span> <span class="fu">names</span>(NA_countsPP), <span class="at">NA_countPP =</span> NA_countsPP)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(na_dataPP, <span class="fu">aes</span>(<span class="at">x =</span> column, <span class="at">y =</span> NA_countPP, <span class="at">fill =</span> NA_countPP)) <span class="sc">+</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>NA_countsPP <span class="ot">&lt;-</span> <span class="fu">colSums</span>(<span class="fu">is.na</span>(PP))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>na_dataPP <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">column =</span> <span class="fu">names</span>(NA_countsPP), <span class="at">NA_countPP =</span> NA_countsPP)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(na_dataPP, <span class="fu">aes</span>(<span class="at">x =</span> column, <span class="at">y =</span> NA_countPP, <span class="at">fill =</span> NA_countPP)) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(NA_countsPP) <span class="sc">+</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Count of NAs in Each Column for Peso Pluma"</span>, <span class="at">x =</span> <span class="st">"Column"</span>, <span class="at">y =</span> <span class="st">"Number of NA Values"</span>) <span class="sc">+</span></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> </span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">50</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
@@ -350,6 +353,7 @@ Attaching package: 'dplyr'</code></pre>
 <p><img src="data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>There are no NA values in this data frame.</p>
 
 
 </section>
